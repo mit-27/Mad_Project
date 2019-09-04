@@ -1,12 +1,14 @@
 package com.example.recruitmentapp;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.*;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -23,6 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class Login_screen extends AppCompatActivity {
 
     TextInputEditText et_email,et_password;
+    TextView tv_forgot_password;
     Button btn_loginup;
     // ProgressBar to display progress of sign up
     ProgressDialog progressDialog;
@@ -44,9 +47,16 @@ public class Login_screen extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         et_email = findViewById(R.id.l_et_email);
         et_password = findViewById(R.id.l_et_password);
+        tv_forgot_password = (TextView)findViewById(R.id.tv_forgot_password);
         btn_loginup = (Button)findViewById(R.id.loginBtn);
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Log in...");
+
+        tv_forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showRecoverPasswordDialogue();
+            }
+        });
 
         btn_loginup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,9 +77,81 @@ public class Login_screen extends AppCompatActivity {
         });
     }
 
+    private void showRecoverPasswordDialogue() {
+
+        // Alert Dialogue
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Recover Password");
+
+        // Set layout Linear layout
+        LinearLayout linearLayout=new LinearLayout(this);
+        // views to set in Dialogue
+        final EditText emailEt = new EditText(this);
+        emailEt.setHint("EMail");
+        emailEt.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        emailEt.setMinEms(16);
+        linearLayout.addView(emailEt);
+        linearLayout.setPadding(10,10,10,10);
+
+        builder.setView(linearLayout);
+
+
+        // buttons
+        builder.setPositiveButton("Recover", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Input Email
+                String email = emailEt.getText().toString().trim();
+                beginRecovery(email);
+
+
+            }
+        });
+        // cancel button
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        // Show Dialog
+        builder.create().show();
+
+    }
+
+    private void beginRecovery(String email) {
+        progressDialog.setMessage("Sending Email...");
+        progressDialog.show();
+        mAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        progressDialog.dismiss();
+                        if(task.isSuccessful())
+                        {
+                            Toast.makeText(Login_screen.this, "Email Sent", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(Login_screen.this, "Failed...", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
+                        Toast.makeText(Login_screen.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
     private void loginuser(String email,String password)
     {
         // Email and Password are valid , show progress dialogue and register User
+        progressDialog.setMessage("Log in...");
         progressDialog.show();
 
         mAuth.signInWithEmailAndPassword(email, password)
@@ -124,5 +206,6 @@ public class Login_screen extends AppCompatActivity {
     {
         Intent i = new Intent(getApplicationContext(),Signup_screen.class);
         startActivity(i);
+        finish();
     }
 }

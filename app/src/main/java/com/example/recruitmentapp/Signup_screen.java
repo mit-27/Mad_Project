@@ -179,5 +179,6 @@ public class Signup_screen extends AppCompatActivity {
     {
         Intent i = new Intent(getApplicationContext(),Login_screen.class);
         startActivity(i);
+        finish();
     }
 }
