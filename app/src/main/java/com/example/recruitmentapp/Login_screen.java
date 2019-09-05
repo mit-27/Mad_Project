@@ -87,7 +87,7 @@ public class Login_screen extends AppCompatActivity {
         LinearLayout linearLayout=new LinearLayout(this);
         // views to set in Dialogue
         final EditText emailEt = new EditText(this);
-        emailEt.setHint("EMail");
+        emailEt.setHint("Email");
         emailEt.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         emailEt.setMinEms(16);
         linearLayout.addView(emailEt);
