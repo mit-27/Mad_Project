@@ -74,22 +74,17 @@
             android:textStyle="bold" />
 
         <!-- Password Label -->
-        <Button
-            android:id="@+id/login_google_Btn"
-            android:layout_width="match_parent"
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/googleLoginBtn"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/button_bg_rounded_corners_google_btn"
-            android:drawableLeft="@drawable/google_icon"
-            android:hapticFeedbackEnabled="true"
-            android:paddingLeft="85dp"
-            android:text="Login with Google"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            android:textColor="#fff"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
             android:textSize="17sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:hapticFeedbackEnabled="true"
+
+            />
 
         <TextView
             android:id="@+id/tv_forgot_password"
