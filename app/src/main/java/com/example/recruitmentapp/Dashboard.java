@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,5 +65,14 @@ public class Dashboard extends AppCompatActivity {
             checkuserstatus();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void profile_page_open(View view) {
+        startActivity(new Intent(getApplicationContext(),profile_page.class));
+
+    }
+
+    public void add_candidate_page_open(View view) {
+        startActivity(new Intent(getApplicationContext(),add_candidate.class));
     }
 }

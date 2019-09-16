@@ -9,6 +9,8 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".profile_page"></activity>
+        <activity android:name=".add_candidate" />
         <activity
 
             android:name=".Dashboard">
