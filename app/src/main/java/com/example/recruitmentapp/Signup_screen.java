@@ -25,11 +25,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Signup_screen extends AppCompatActivity {
 
-    TextInputEditText et_email,et_password,et_name,et_cpassword;
+    TextInputEditText et_email,et_password,et_cpassword;
     Button btn_signup;
     // ProgressBar to display progress of sign up
     ProgressDialog progressDialog;
-    DatabaseReference databaseReference;
+
     // Declare an instance of FirebaseAuth
     private FirebaseAuth mAuth;
 
@@ -46,8 +46,6 @@ public class Signup_screen extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.back_icon);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("User_info");
-
 
 
 
@@ -55,7 +53,6 @@ public class Signup_screen extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         et_email = findViewById(R.id.et_email);
         et_password = findViewById(R.id.et_password);
-        et_name = findViewById(R.id.et_name);
         et_cpassword = findViewById(R.id.et_cpassword);
         btn_signup = (Button)findViewById(R.id.btn_signup);
         progressDialog = new ProgressDialog(this);
@@ -69,14 +66,9 @@ public class Signup_screen extends AppCompatActivity {
                 String email = et_email.getText().toString().trim();
                 String password = et_password.getText().toString().trim();
                 String cpassword = et_cpassword.getText().toString().trim();
-                String fullname = et_name.getText().toString().trim();
 
-                if(fullname.isEmpty())
-                {
-                    et_name.setError("Please Enter Name");
-                    et_name.setFocusable(true);
-                }
-                else if(!password.equals(cpassword))
+
+                if(!password.equals(cpassword))
                 {
                     et_cpassword.setError("Password is not Matching");
                     et_cpassword.setFocusable(true);
@@ -94,7 +86,7 @@ public class Signup_screen extends AppCompatActivity {
                 }
                 else
                 {
-                    registeruser(fullname,email,password);
+                    registeruser(email,password);
                 }
 
             }
@@ -107,11 +99,10 @@ public class Signup_screen extends AppCompatActivity {
         return super.onSupportNavigateUp();
     }
 
-    private void registeruser(String fullname,String aemail, String password)
+    private void registeruser(String aemail, String password)
     {
         // Email and Password are valid , show progress dialogue and register User
         progressDialog.show();
-        final String name=fullname;
         final String email=aemail;
 
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -121,21 +112,7 @@ public class Signup_screen extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, dismiss dialogue and start dashboard activity
                             progressDialog.dismiss();
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            User user_info = new User(name,email);
-                            databaseReference.child(user.getUid()).setValue(user_info).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(Signup_screen.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-
+                            final FirebaseUser user = mAuth.getCurrentUser();
                             user.sendEmailVerification()
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
@@ -143,7 +120,9 @@ public class Signup_screen extends AppCompatActivity {
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(Signup_screen.this,
                                                         "Verification mail sent to your Email", Toast.LENGTH_SHORT).show();
-
+                                                Intent i = new Intent(getApplicationContext(),Login_screen.class);
+                                                startActivity(i);
+                                                finish();
                                             }
                                             else
                                             {
@@ -152,6 +131,9 @@ public class Signup_screen extends AppCompatActivity {
                                             }
                                         }
                                     });
+
+
+
 
                         } else {
                             // If sign in fails, display a message to the user.
