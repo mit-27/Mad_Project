@@ -18,16 +18,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
     >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="My Profile"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/colorbg"
-            android:textStyle="bold"
-            android:textSize="25dp"/>
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -85,51 +76,87 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/input_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Gender"
+                android:inputType="text"
+                android:paddingLeft="4dp"
+
+                android:textColorHint="#7CB9E8"
+                android:textSize="18dp" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:checkedButton="@+id/first"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/input_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male" />
+
+                <RadioButton
+                    android:id="@+id/input_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Female" />
+                <RadioButton
+                    android:id="@+id/input_other"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Other" />
+            </RadioGroup>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.6"
+                android:background="#263238"
+                android:layout_margin="4dp"
+
+                />
+
+        </LinearLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="true"
             android:focusableInTouchMode="true"
             app:boxStrokeColor="@color/colorbg"
-            android:textColorHint="#7CB9E8"
-            android:layout_marginLeft="3dp"
-            android:layout_marginBottom="0dp">
-
-            <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
-            android:id="@+id/genderSpinner"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="Gender"
-            app:met_floatingLabel="normal"
-            android:textColorHint="#CFD8DC"
-            android:drawableRight="@drawable/gender_male_female"
-            />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            app:boxStrokeColor="@color/colorbg"
-            android:layout_marginLeft="3dp"
             android:textColorHint="#7CB9E8"
             android:layout_marginBottom="8dp">
-            <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
-                android:id="@+id/jobTitleSpinner"
-                android:layout_width="fill_parent"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_job_Title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_person_black_24dp"
+                android:inputType="text"
                 android:hint="Job Title"
-                app:met_floatingLabel="normal"
-                android:textColorHint="#CFD8DC"
-                android:drawableRight="@drawable/gender_male_female"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
 
 
         <Button
-            android:id="@+id/signUpBtn"
+            android:id="@+id/btn_profile_update"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"

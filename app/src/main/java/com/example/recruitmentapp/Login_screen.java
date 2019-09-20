@@ -30,6 +30,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class Login_screen extends AppCompatActivity {
 
@@ -197,6 +201,33 @@ public class Login_screen extends AppCompatActivity {
                             //  login success, dismiss dialogue and start dashboard activity
                             progressDialog.dismiss();
                             FirebaseUser user = mAuth.getCurrentUser();
+
+                            if(task.getResult().getAdditionalUserInfo().isNewUser())
+                            {
+                                // set userid and user email from auth
+                                String uid = user.getUid();
+                                String email = user.getEmail();
+                                // when user login store user info in firebase database too
+                                // using Hashmap
+                                HashMap<Object,String> hashMap = new HashMap<>();
+                                // put info in Hashmap
+                                hashMap.put("Email",email);
+                                hashMap.put("Name","");
+                                hashMap.put("Mobile_number","");
+                                hashMap.put("Gender","");
+                                hashMap.put("Job_title","");
+                                hashMap.put("Uid",uid);
+                                // Firebase database instance
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                // path to store user data named "User"
+                                DatabaseReference reference = database.getReference("Users");
+                                // put data within hashmap in database
+                                reference.child(uid).child("User_Info").setValue(hashMap);
+                            }
+
+
+
+
                             if(user.isEmailVerified())
                             {
                                 Toast.makeText(Login_screen.this, "\n Login Successful "+user.getEmail(), Toast.LENGTH_SHORT).show();
@@ -273,6 +304,32 @@ public class Login_screen extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
+
+                            // if user sign in first time then get and show user info from google account
+                            if(task.getResult().getAdditionalUserInfo().isNewUser())
+                            {
+                                // set userid and user email from auth
+                                String uid = user.getUid();
+                                String email = user.getEmail();
+                                // when user login store user info in firebase database too
+                                // using Hashmap
+                                HashMap<Object,String> hashMap = new HashMap<>();
+                                // put info in Hashmap
+                                hashMap.put("Email",email);
+                                hashMap.put("Name","");
+                                hashMap.put("Mobile_number","");
+                                hashMap.put("Gender","");
+                                hashMap.put("Job_title","");
+                                hashMap.put("Uid",uid);
+                                // Firebase database instance
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                // path to store user data named "User"
+                                DatabaseReference reference = database.getReference("Users");
+                                // put data within hashmap in database
+                                reference.child(uid).child("User_Info").setValue(hashMap);
+                            }
+
+
 
                             // go to profile activity after logged in
                             Toast.makeText(Login_screen.this, "\n Login Successful "+user.getEmail(), Toast.LENGTH_SHORT).show();
