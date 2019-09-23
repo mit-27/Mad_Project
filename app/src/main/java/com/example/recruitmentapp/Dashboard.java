@@ -75,4 +75,8 @@ public class Dashboard extends AppCompatActivity {
     public void add_candidate_page_open(View view) {
         startActivity(new Intent(getApplicationContext(),add_candidate.class));
     }
+
+    public void candidate_view_page_open(View view) {
+        startActivity(new Intent(getApplicationContext(),Candidate_view.class));
+    }
 }

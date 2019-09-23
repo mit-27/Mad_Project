@@ -4,12 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -46,8 +42,7 @@ public class profile_page extends AppCompatActivity {
 
 
 
-    String[] jobTitleArray = {"Job 1"," Job 2" , "Job 3"};
-    String[] gender = {"Male","Female","Other"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +72,6 @@ public class profile_page extends AppCompatActivity {
         et_phone = findViewById(R.id.input_phone);
         rdm = findViewById(R.id.input_male);
         rdf = findViewById(R.id.input_female);
-        rdo = findViewById(R.id.input_other);
         btn_profile_update = findViewById(R.id.btn_profile_update);
 
         btn_profile_update.setOnClickListener(new View.OnClickListener() {
@@ -94,14 +88,11 @@ public class profile_page extends AppCompatActivity {
                 {
                     Gender = rdm.getText().toString();
                 }
-                else if(rdf.isChecked())
+                else
                 {
                     Gender = rdf.getText().toString();
                 }
-                else
-                {
-                    Gender = rdo.getText().toString();
-                }
+
 
 
                 HashMap<String,Object> result = new HashMap<>();

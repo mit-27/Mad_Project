@@ -148,6 +148,7 @@
         <androidx.cardview.widget.CardView
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
+            android:onClick="candidate_view_page_open"
             android:layout_width="160dp"
             android:layout_height="190dp"
             android:id="@+id/candidates"

@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="58dp"
+        android:paddingTop="20dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         >
@@ -26,10 +26,9 @@
             android:textColorHint="#7CB9E8"
             android:layout_marginBottom="8dp">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_name"
+                android:id="@+id/Can_input_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:inputType="text"
                 android:hint="Full Name"
                 />
@@ -45,7 +44,7 @@
             app:boxStrokeColor="@color/colorbg"
             android:layout_marginBottom="8dp">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_email"
+                android:id="@+id/Can_input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -63,7 +62,7 @@
             app:boxStrokeColor="@color/colorbg"
             android:layout_marginBottom="10dp">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_phone"
+                android:id="@+id/Can_input_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -87,7 +86,6 @@
                     android:hint="Gender"
                     android:inputType="text"
                     android:paddingLeft="4dp"
-
                     android:textColorHint="#7CB9E8"
                     android:textSize="18dp" />
 
@@ -99,13 +97,13 @@
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/first"
+                        android:id="@+id/Can_rdm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Male" />
 
                     <RadioButton
-                        android:id="@+id/second"
+                        android:id="@+id/Can_rdf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -139,10 +137,9 @@
 
             android:layout_marginBottom="8dp">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/jobTitle"
+                android:id="@+id/Can_input_jobTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:inputType="text"
                 android:hint="Job Title"
                 />
@@ -156,7 +153,7 @@
             android:textColorHint="#7CB9E8"
             android:layout_marginBottom="8dp">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/source"
+                android:id="@+id/Can_input_source"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -173,10 +170,9 @@
             android:textColorHint="#7CB9E8"
             android:layout_marginBottom="8dp">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/currentStatus"
+                android:id="@+id/Can_input_currentStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:inputType="text"
                 android:hint="Current Status"
                 />

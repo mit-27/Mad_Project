@@ -9,11 +9,10 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".profile_page"></activity>
+        <activity android:name=".Candidate_view"></activity>
+        <activity android:name=".profile_page" />
         <activity android:name=".add_candidate" />
-        <activity
-
-            android:name=".Dashboard">
+        <activity android:name=".Dashboard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +23,7 @@
         <activity android:name=".Login_screen" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme_without_actionbar"/>
+            android:theme="@style/AppTheme_without_actionbar" />
         <activity
             android:name=".SplashScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -36,6 +35,6 @@
         </activity>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
