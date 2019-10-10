@@ -71,12 +71,31 @@ public class Cadapter extends RecyclerView.Adapter<Cadapter.ItemViewHolder> {
         if(list_items.isInterview_status())
         {
             holder.interview_scheduled.setText("Interview Scheduled");
+            holder.Schedule.setText("Update Schedule");
+            holder.dt_layout.setVisibility(LinearLayout.VISIBLE);
+            holder.tv_date.setText(list_items.getIntv_date());
+            holder.tv_time.setText(list_items.getIntv_time());
         }
         else
         {
             holder.interview_scheduled.setText("Interview not Scheduled");
+            holder.dt_layout.setVisibility(LinearLayout.GONE);
+//            holder.Schedule.setEnabled(true);
 
         }
+        holder.Schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i =new Intent(context,Schedule.class);
+                i.putExtra("Can_name",list_items.getName());
+                i.putExtra("Can_id",list_items.getCid());
+                i.putExtra("Can_int_date",list_items.getIntv_date());
+                i.putExtra("Can_int_time",list_items.getIntv_time());
+                context.startActivity(i);
+
+            }
+        });
+
 
 
 
@@ -93,9 +112,9 @@ public class Cadapter extends RecyclerView.Adapter<Cadapter.ItemViewHolder> {
     //View holder class, where all view components are defined
     class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
 
-        public TextView name,jobtitle,interview_status,interview_scheduled;
+        public TextView name,jobtitle,interview_status,interview_scheduled,tv_date,tv_time;
         public Button Schedule;
-        public LinearLayout item_layout;
+        public LinearLayout item_layout,dt_layout;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
@@ -106,6 +125,9 @@ public class Cadapter extends RecyclerView.Adapter<Cadapter.ItemViewHolder> {
             interview_status = itemView.findViewById(R.id.tv_candidate_interview_status);
             interview_scheduled = itemView.findViewById(R.id.tv_candidate_interview_scheduled);
             Schedule = itemView.findViewById(R.id.btn_schedule);
+            tv_date = itemView.findViewById(R.id.tv_int_date_value);
+            tv_time = itemView.findViewById(R.id.tv_int_time_value);
+            dt_layout = itemView.findViewById(R.id.l_intv_dt);
             item_layout.setOnCreateContextMenuListener(this);
 
         }

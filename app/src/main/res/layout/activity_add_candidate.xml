@@ -65,7 +65,7 @@
                 android:id="@+id/Can_input_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:maxLength="10"
                 android:inputType="phone"
                 android:hint="Mobile Number"
                 />

@@ -151,8 +151,9 @@ public class profile_page extends AppCompatActivity {
                 }
                 else
                 {
-                    rdo.setChecked(true);
+
                 }
+
             }
 
             @Override

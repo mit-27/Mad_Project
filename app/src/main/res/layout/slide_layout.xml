@@ -12,7 +12,7 @@
         android:layout_marginTop="160dp"
         android:text="Heading 1"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FF9933"
+        android:textColor="#ffeb3b"
         android:textStyle="bold" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="2dp"
         android:padding="25dp"
-        android:text="Drawings me opinions returned absolute in. Otherwise therefore sex did are unfeeling something. Certain be ye amiable by exposed so. To celebrated estimating excellence do. Coming either suffer living her gay theirs."
+        android:text=""
         android:textAlignment="center"
         android:textColor="#FFF"/>
 

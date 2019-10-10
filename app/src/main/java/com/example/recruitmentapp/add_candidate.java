@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,14 +59,20 @@ public class add_candidate extends AppCompatActivity {
                 String phone = et_phone.getText().toString();
                 String status = et_status.getText().toString();
                 String source = et_source.getText().toString();
-                String gender;
+                String gender="";
                 if(rdm.isChecked())
                 {
                     gender = rdm.getText().toString();
                 }
-                else
+                else if(rdf.isChecked())
                 {
                     gender = rdf.getText().toString();
+                }
+                else
+                {
+                    rdm.setError("Select Gender");
+//                    Toast.makeText(add_candidate.this, "Please Select Gender", Toast.LENGTH_SHORT).show();
+
                 }
 
                 if(TextUtils.isEmpty(name))

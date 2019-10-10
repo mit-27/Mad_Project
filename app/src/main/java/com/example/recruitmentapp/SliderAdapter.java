@@ -13,12 +13,11 @@ import androidx.viewpager.widget.PagerAdapter;
 public class SliderAdapter extends PagerAdapter
 {
     public String[] slide_headings = {
-            "Heading 1","Heading 2","Heading 3"
+            "Candidate Handling","Interview Scheduling"
     };
     public String[] slide_descs = {
-            "Hello THis is First Description 1",
-            "Hello THis is First Description 2",
-            "Hello THis is First Description 3"
+            "Simple and smart way to handle all the candidate through this application",
+            "Easy to make a schedule of particular candidate using simple form"
     };
     Context context;
     LayoutInflater layoutInflater;

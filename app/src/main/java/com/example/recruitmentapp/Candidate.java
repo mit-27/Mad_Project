@@ -1,7 +1,7 @@
 package com.example.recruitmentapp;
 
 public class Candidate {
-    String Name,Email,Gender,Jobtitle,Phone,Source,Status,cid;
+    String Name,Email,Gender,Jobtitle,Phone,Source,Status,cid,intv_date,intv_time;
     boolean Interview_status;
 
     public Candidate(String name, String email, String gender, String jobtitle, String phone, String source, String status, String cid, boolean interview_status) {
@@ -14,6 +14,24 @@ public class Candidate {
         Status = status;
         this.cid = cid;
         Interview_status = interview_status;
+        intv_date = "";
+        intv_time = "";
+    }
+
+    public String getIntv_date() {
+        return intv_date;
+    }
+
+    public void setIntv_date(String intv_date) {
+        this.intv_date = intv_date;
+    }
+
+    public String getIntv_time() {
+        return intv_time;
+    }
+
+    public void setIntv_time(String intv_time) {
+        this.intv_time = intv_time;
     }
 
     public Candidate()
