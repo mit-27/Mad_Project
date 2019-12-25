@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -47,6 +48,16 @@ public class Schedule extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
+
+
+        // Action Bar and its Title
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Schedule");
+        Log.i("Year and month",year+" and "+month);
+        // enable back button
+      //  actionBar.setDisplayHomeAsUpEnabled(true);
+       // actionBar.setDisplayShowHomeEnabled(true);
+       // actionBar.setHomeAsUpIndicator(R.drawable.back_icon);
         date = (Button) findViewById(R.id.selectdate);
         time = (Button) findViewById(R.id.selecttime);
         set_date = (TextView) findViewById(R.id.set_date);
@@ -77,6 +88,7 @@ public class Schedule extends AppCompatActivity {
         // Can info update and fetch
 
         String cid = i.getStringExtra("Can_id");
+        Log.i("Can id : ",cid);
         String cname = i.getStringExtra("Can_name");
         if(!TextUtils.isEmpty(cname))
         {
@@ -84,6 +96,9 @@ public class Schedule extends AppCompatActivity {
         }
         String intv_date = i.getStringExtra("Can_int_date");
         String intv_time = i.getStringExtra("Can_int_time");
+
+        Log.i("Date : ",intv_date);
+        Log.i(" Time : ",intv_time);
 
 
 
@@ -100,15 +115,22 @@ public class Schedule extends AppCompatActivity {
 
         }
 
+
+
         if(!TextUtils.isEmpty(intv_time))
         {
-            List<String> date = Arrays.asList(intv_date.split(":"));
+            List<String> date = Arrays.asList(intv_time.split(":"));
             hour = Integer.valueOf(date.get(0));
             minute = Integer.valueOf(date.get(1));
             String time1 = String.valueOf(hour) + ":" + String.valueOf(minute);
             set_time.setText(time1);
 
         }
+
+        Log.i("Set time : ",set_time.getText().toString());
+        Log.i(" Set date",set_date.getText().toString());
+
+
 
         btn_update_schedule = findViewById(R.id.btn_schedule_update);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -131,6 +153,7 @@ public class Schedule extends AppCompatActivity {
                     databaseReference.child("interview_status").setValue(true);
                     Toast.makeText(Schedule.this, "Interview Schedule Updated", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(),Candidate_view.class));
+                    finish();
                 }
             }
         });
@@ -145,11 +168,16 @@ public class Schedule extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
 
         // From calander get the year, month, day, hour, minute
-         year = c.get(Calendar.YEAR);
-         month = c.get(Calendar.MONTH);
-         day = c.get(Calendar.DAY_OF_MONTH);
-         hour = c.get(Calendar.HOUR_OF_DAY);
-         minute = c.get(Calendar.MINUTE);
+        if(day==0 && hour==0)
+        {
+            year = c.get(Calendar.YEAR);
+            month = c.get(Calendar.MONTH);
+            day = c.get(Calendar.DAY_OF_MONTH);
+            hour = c.get(Calendar.HOUR_OF_DAY);
+            minute = c.get(Calendar.MINUTE);
+        }
+
+
 
         switch (id) {
             case Date_id:

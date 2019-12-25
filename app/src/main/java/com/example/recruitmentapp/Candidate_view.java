@@ -2,6 +2,7 @@ package com.example.recruitmentapp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,6 +45,9 @@ public class Candidate_view extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_candidate_view);
+
+
+
 
         menuRecyclerView = findViewById(R.id.candidate_itemview);
         LinearLayoutManager manager = new LinearLayoutManager(Candidate_view.this);
